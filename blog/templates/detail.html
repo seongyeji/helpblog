@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% comment %} 우선순위 짱 높음 {% endcomment %}
+
+{% block contents %}
+<body>
+    <h1>본문내용</h1>
+    <br><br>
+    <h5> 제목 : {{details.title}} </h5>
+    <p> 작성 날짜 : {{details.pub_date}} </p>
+    <p> 본문 미리보기 : {{details.body}} </p>
+    <hr>
+    <a href='{% url 'update' blog.id %}'>수정</a>
+    <a class='delete' href='{% url 'delete' blog.id %}'>삭제</a>
+    <br>
+    <hr>
+    <h6>댓글목록</h6>
+            <a class='btn btn-default' href='{% url 'add_comment' pk=blog.pk %}'>Add comment</a>
+            {% for comment in blog.comments.all %}
+            <div class='comment'>
+                <div class='date'>{{ comment.created_date }}</div>
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.text|linebreaks }}</p>
+                <hr>
+            <div>
+            {% empty %}
+            <p> No comments here yet :(</p>
+            <br>
+            {% endfor %}
+</body>
+{% endblock  %}

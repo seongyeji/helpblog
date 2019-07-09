@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% comment %} 우선순위 짱 높음 {% endcomment %}
+
+{% block contents %}
+<body>
+<div class="container">
+
+    <h1>Login</h1>
+    <form method = "POST" action="{% url 'login' %}">
+
+
+        {% csrf_token %}
+        Username:
+        <br>
+        <input name="username" type= "text" value="">
+        <br>
+        Password:
+        <br>
+        <input name="password" type="password" value="">
+        <br>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Sign Up!">
+    </form>
+</div>
+</body>
+{% endblock  %}

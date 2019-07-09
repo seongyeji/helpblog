@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% comment %} 우선순위 짱 높음 {% endcomment %}
+
+{% block contents %}
+<body>
+<br>
+        <div class="card mt-5">
+            {% for blog in posts %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ blog.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {{ blog.pub_date }}
+                    </h6>
+                    <p class="card-text">{{ blog.summary }}</p>
+                    <a href="{% url 'detail' pk=blog.pk %}" class="card-link">MORE</a>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        <div class='container'>
+        {% if posts.has_previous %}
+        <a href="?page=1">FIRST</a>
+        <a href="?page={{posts.previous_page_number}}">◀</a>
+        {% endif %}
+        <span>{{posts.number}}</span>
+        <span>of</span>
+        <span>{{posts.paginator.num_pages}}</span>
+        {% if posts.has_next %}
+        <a href="?page={{posts.next_page_number}}">▶</a>
+        <a href="?page={{posts.paginator.num_pages}}">LAST</a>
+        {% endif %}
+        </div>
+</body>
+{% endblock  %}
