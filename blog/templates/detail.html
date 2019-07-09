@@ -9,12 +9,12 @@
     <p> 작성 날짜 : {{details.pub_date}} </p>
     <p> 본문 미리보기 : {{details.body}} </p>
     <hr>
-    <a href='{% url 'update' blog.id %}'>수정</a>
-    <a class='delete' href='{% url 'delete' blog.id %}'>삭제</a>
+    <a href="{% url 'update' pk=details.pk %}">수정</a>
+    <a href="{% url 'delete' pk=details.pk %}" class="delete" >삭제</a>
     <br>
     <hr>
     <h6>댓글목록</h6>
-            <a class='btn btn-default' href='{% url 'add_comment' pk=blog.pk %}'>Add comment</a>
+            <a href="{% url 'add_comment' pk=details.pk %}" class="btn btn-default">Add comment</a>
             {% for comment in blog.comments.all %}
             <div class='comment'>
                 <div class='date'>{{ comment.created_date }}</div>
